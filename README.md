@@ -56,6 +56,8 @@ https://www.php.net/manual/en/features.commandline.io-streams.php
 
 https://www.php.net/manual/en/context.http.php
 
+https://laravel.com/docs/8.x/views
+
 ## Helper Functions
 
 https://laravel.com/docs/8.x/helpers
