@@ -8,6 +8,7 @@ https://mattallan.me/posts/dont-use-illuminate-support/
 
 https://medium.com/php-fad/why-make-framework-agnostic-code-208598eb07cf
 
+https://refactoring.guru/design-patterns
 
 ## PSR
 
