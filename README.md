@@ -58,6 +58,12 @@ https://www.php.net/manual/en/context.http.php
 
 https://laravel.com/docs/8.x/views
 
+https://stackoverflow.com/questions/6905706/php-sending-variables-to-file-get-contents
+
+https://stackoverflow.com/questions/4003989/upload-a-file-using-file-get-contents
+
+https://www.php.net/manual/en/function.stream-context-create.php
+
 ## Helper Functions
 
 https://laravel.com/docs/8.x/helpers
