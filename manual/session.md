@@ -29,76 +29,145 @@ $user_id = (session()->has('user.id') ? session()->get('user.id') : false);
 echo $user_id;
 
 ```
+En caso de ver conveniente, se puede agregar session() como método con el mismo nombre a la clase Request para obtener los valores como una propiedad del mismo *(simil Laravel)*
+```php
+<?php
+
+echo $request->session()->get('user.id');
+```
 
 ### Método ALL 
 Para obtener todas las variables de sesión como el siguiente ejemplo
 ```php
+<?php
+
 $session = $_SESSION;
 ```
 sólo bastará con llamar a la función session()
 ```php
+<?php
+
 $session = session()->all();
 ```
 Y consecuentemente también se podría llamar a una clave de la siguiente manera:
 ```php
+<?php
+
 echo session()->all()['user']['id'];
 ```
-Pero para llamar a claves dentro de la sesión, convenientemente se podrá llamar con el método GET.
+Pero para llamar a claves dentro de la sesión es conveniente a una buena práctica obtener los valores de la clave con el método GET.
 
 ### Método GET 
-Ejemplo de sesión:
+Ejemplo de sesión pre-establecida:
 ```bash
 $_SESSION
 ├── [bands]
-│   ├── [0] pantera
-│   └── [1] metallica
-│   └── [2] megadeth
+|   └── [metal]
+│       ├── [0] pantera
+│       └── [1] metallica
+│       └── [2] megadeth
 └── [other]
 ```
 Para obtener todas las claves de `bands`:
 ```php
+<?php
+
 $bands = session()->get('bands');
+```
+Salida:
+```bash
+metal => Array
 ```
 Para obtener una clave ordinal:
 ```php
-$metallica = session()->get('bands.metal')[1];
+<?php
+
+$metalBands = session()->get('bands.metal')[1];
 ```
 Salida:
 ```bash
 metallica
 ```
 
-## PUT
-// example: $_SESSION['bands']['metal'] = 'pantera';
-echo '<pre>';
-// print_r( session()->put('bands.metal', 'metallica') );                   // update with string value
-// print_r( session()->put('bands.metal', ['metallica', 'pantera']) );      // update with array value
-// print_r( session()->put('bands.pop', 'michael jackson') );               // create new string/array value on parent key
-// print_r( session()->put('bands.pop.classic', 'michael jackson') );       // exception error on 2rd key "pop"
-echo '</pre>';
+## Método PUT
+Establecer una nueva clave en sesión. Nótese que cuando se inicializa primera clave puede prescindir de pasar el segundo atributo al método
+```php
+<?php
 
-// PUSH session()->push('{existing.arrayPath}', '{array}'); //
-echo 'PUSH';
-// example: $_SESSION['bands']['metal'] = 'pantera';
-echo '<pre>';
-// print_r( session()->push('bands.metal', 'megadeth') );               // update update key with [1] => metallica
-// print_r( session()->push('bands', 'pop') );                          // update key with [0] => pop (key one level depth sencond mehod attribute is a must)
-// print_r( session()->push('bands.pop') );                             // update key with [pop] => ''
-// print_r( session()->push('bands.pop', 'michael jackson') );          // update key with [pop] => '' (second attribute is overlap with empty value)
-// print_r( session()->push('bands.pop.classic', 'michael jackson') );  // exception error on 2rd key "pop"
-echo '</pre>';
+session()->put('bands');
+```
+Salida:
+```bash
+$_SESSION
+└── [bands]
+```
+Actualizar clave con un valor (string) . Nótese que se puede agregar hasta una sub clave no existente en el atributo $keys.
+```php
+<?php
 
-// FLUSH session()->flush('{existing.arrayPath}'); //
-echo 'FLUSH';
-echo '<pre>';
-// print_r( session()->flush('bands.metal') ); // update
-echo '</pre>';
+session()->put('bands.metal', 'metallica');
+```
+Resultado:
+```bash
+$_SESSION
+└── [bands]
+    └── [metal] metallica
+```
+Pero arrojará error cuando se intente establecer una profundidad de dos claves inexistentes.
+```php
+<?php
 
-// FORGET session()->forget('{existing.arrayPath}'); //
-echo 'FORGET';
-echo '<pre>';
-// print_r( session()->forget('bands') ); // update
-// print_r( session()->forget('metal') ); // update
-echo '</pre>';
+session()->put('bands.metal.classic', 'metallica');
+```
+
+Actualizar clave con valor array
+```php
+<?php
+
+$array = ['metallica', 'pantera'];
+session()->put('bands.metal', $array);
+```
+Resultado:
+```bash
+$_SESSION
+└── [bands]
+    └── [metal]
+        ├── [0] metallica
+        └── [1] pantera
+```
+Agregar nueva clave con valor dentro de clave existente
+```php
+$popArtists = ['peter gabriel', 'phil collins'];
+session()->put('bands.pop', $popArtists);
+```
+Resultado:
+```bash
+$_SESSION
+└── [bands]
+    └── [metal]
+    |   ├── [0] metallica
+    |   └── [1] pantera
+    └── [pop]
+        ├── [0] peter gabriel
+        └── [1] phil collins
+```
+
+## Método PUSH
+
+
+session()->push('bands.metal', 'megadeth');               // update update key with [1] => metallica
+session()->push('bands', 'pop');                          // update key with [0] => pop (key one level depth sencond mehod attribute is a must)
+ession()->push('bands.pop');                             // update key with [pop] => ''
+session()->push('bands.pop', 'michael jackson');          // update key with [pop] => '' (second attribute is overlap with empty value)
+session()->push('bands.pop.classic', 'michael jackson');  // exception error on 2rd key "pop"
+
+
+## Método FLUSH 
+
+session()->flush('bands.metal');
+
+## Método FORGET
+
+session()->forget('bands');
 
 
