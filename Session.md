@@ -1,7 +1,30 @@
+# Session
 
 
+Ejemplo:
+
+```bash
 // PUT session()->put('{existing.arrayKey}', '{string / array}'); //
-echo 'PUT';
+```
+
+## GET
+Ejemplo sobre sesión:
+```bash
+$_SESSION
+bands
+  metal
+    pantera
+    metallica
+    megadeth
+```
+Para obtener
+```bash
+session()->get('bands.metal')[1] ); // get 'metallica'
+
+session()->get('bands');
+```
+
+## PUT
 // example: $_SESSION['bands']['metal'] = 'pantera';
 echo '<pre>';
 // print_r( session()->put('bands.metal', 'metallica') );                   // update with string value
@@ -34,9 +57,4 @@ echo '<pre>';
 // print_r( session()->forget('metal') ); // update
 echo '</pre>';
 
-echo 'GET';
-// example: $_SESSION['bands']['metal'] = ['pantera', 'metallica', 'megadeth'];
-echo '<pre>';
-// print_r( session()->get('bands.metal')[1] ); // get 'metallica'
-print_r( session()->get('bands') );
-echo '</pre>';
+
