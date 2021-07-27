@@ -1,36 +1,69 @@
 # Session
 
-
-Ejemplo:
-
+Ejemplo de uso de `$_SESSION` en controlador
 ```bash
 <?php
 
-namespace ...;
+namespace App\Http\Controllers;
 
 use App\Session\Session;
 
+class ExampleController
+{    
+    public function ListPage()
+    {
+        $session = new Session;
+        
+        $user_id = ($session()->has('user.id') ? $session()->get('user.id') : false;
+    
+        return $user_id;
+    }
+}
+```
+Ejemplo de uso de `$_SESSION` a través de `Global Functions` como `session()`
+```php
+<?php
+
+$user_id = (session()->has('user.id') ? session()->get('user.id') : false);
+
+echo $user_id;
+
 ```
 
-### GET 
-Ejemplo sobre sesión:
+### Método ALL 
+Para obtener todas las variables de sesión como el siguiente ejemplo
+```php
+$session = $_SESSION;
+```
+sólo bastará con llamar a la función session()
+```php
+$session = session()->all();
+```
+Y consecuentemente también se podría llamar a una clave de la siguiente manera:
+```php
+echo session()->all()['user']['id'];
+```
+Pero para llamar a claves dentro de la sesión, convenientemente se podrá llamar con el método GET.
+
+### Método GET 
+Ejemplo de sesión:
 ```bash
 $_SESSION
-├── bands
-│   ├── pantera
-│   └── metallica
-│   └── megadeth
-└── other...
+├── [bands]
+│   ├── [0] pantera
+│   └── [1] metallica
+│   └── [2] megadeth
+└── [other]
 ```
 Para obtener todas las claves de `bands`:
-```bash
-session()->get('bands');
+```php
+$bands = session()->get('bands');
 ```
 Para obtener una clave ordinal:
-```bash
-session()->get('bands.metal')[1];
+```php
+$metallica = session()->get('bands.metal')[1];
 ```
-salida:
+Salida:
 ```bash
 metallica
 ```
