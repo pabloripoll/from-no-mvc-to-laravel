@@ -7,7 +7,7 @@ Ejemplo:
 // PUT session()->put('{existing.arrayKey}', '{string / array}'); //
 ```
 
-## GET
+### GET 
 Ejemplo sobre sesión:
 ```bash
 $_SESSION
