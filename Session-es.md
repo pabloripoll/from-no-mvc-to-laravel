@@ -28,7 +28,7 @@ session()->get('bands');
 ```
 Para obtener una clave ordinal:
 ```bash
-session()->get('bands.metal')[1] );
+session()->get('bands.metal')[1];
 ```
 salida:
 ```bash
