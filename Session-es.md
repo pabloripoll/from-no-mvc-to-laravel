@@ -4,24 +4,35 @@
 Ejemplo:
 
 ```bash
-// PUT session()->put('{existing.arrayKey}', '{string / array}'); //
+<?php
+
+namespace ...;
+
+use App\Session\Session;
+
 ```
 
 ### GET 
 Ejemplo sobre sesión:
 ```bash
 $_SESSION
-bands
-  metal
-    pantera
-    metallica
-    megadeth
+├── bands
+│   ├── pantera
+│   └── metallica
+│   └── megadeth
+└── other...
 ```
-Para obtener
+Para obtener todas las claves de `bands`:
 ```bash
-session()->get('bands.metal')[1] ); // get 'metallica'
-
 session()->get('bands');
+```
+Para obtener una clave ordinal:
+```bash
+session()->get('bands.metal')[1] );
+```
+salida:
+```bash
+metallica
 ```
 
 ## PUT
