@@ -43,19 +43,21 @@ Para obtener todas las variables de sesión como el siguiente ejemplo
 
 $session = $_SESSION;
 ```
-sólo bastará con llamar a la función session()
+sólo bastará con llamar a la función session() para obtener las claves
 ```php
 <?php
 
 $session = session()->all();
+
+echo $session['user']['id'];
 ```
-Y consecuentemente también se podría llamar a una clave de la siguiente manera:
+Como también se podría llamar a una clave en la misma línea:
 ```php
 <?php
 
 echo session()->all()['user']['id'];
 ```
-Pero para llamar a claves dentro de la sesión es conveniente a una buena práctica obtener los valores de la clave con el método GET.
+Pero para llamar a claves dentro de la sesión es conveniente para una buena práctica, obtener los valores de la clave con el método GET.
 
 ### Método GET 
 Ejemplo de sesión pre-establecida:
