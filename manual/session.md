@@ -82,7 +82,21 @@ Para obtener una clave ordinal:
 ```php
 <?php
 
-$metalBands = session()->get('bands.metal')[1];
+$metalArtists = session()->get('bands.metal');
+
+echo $metalArtists[1];
+```
+Salida:
+```bash
+metallica
+```
+También se puede obtener una clave ordinal de la siguiente manera
+```php
+<?php
+
+$metalArtists = session()->get('bands.metal')[1];
+
+echo $metalArtists;
 ```
 Salida:
 ```bash
@@ -119,7 +133,10 @@ Pero arrojará error cuando se intente establecer una profundidad de dos claves 
 
 session()->put('bands.metal.classic', 'metallica');
 ```
-
+Salida:
+```bash
+Exception error:
+```
 Actualizar clave con valor array
 ```php
 <?php
