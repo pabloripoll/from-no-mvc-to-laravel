@@ -1,9 +1,9 @@
 # CCS MVC Framework
 
-La intensión de este framework es para restructurar el código y el patrón de diseño existente *(refactoring)* en una aplicación sin patron de diseño normalizado, con el objetivo de que una vez cubierto todas las características de la aplicación, sea factible la migración del sistema a un framework como Laravel ó Symfony.
+La intensión de este framework es para restructurar el código y el patrón de diseño existente *(refactoring)[https://es.wikipedia.org/wiki/Refactorizaci%C3%B3n]* en una aplicación sin patron de diseño normalizado, con el objetivo de que una vez cubierto todas las características de la aplicación, sea factible la migración del sistema a un framework como Laravel ó Symfony.
 
 
-### Recursos utilizados para el desarrollo
+### Recursos de estudio para el desarrollo:
 
 #### Patrones
 
@@ -33,11 +33,7 @@ https://route.thephpleague.com/4.x/middleware/
 
 https://github.com/Nyholm/psr7
 
-#### PDO
-
-https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php?rq=1
-
-## Laravel Structure
+#### Laravel
 
 https://laravel.com/docs/8.x/structure
 
