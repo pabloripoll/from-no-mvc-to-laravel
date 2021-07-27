@@ -1,6 +1,11 @@
-# ccs-cloudgestion
+# CCS MVC Framework
 
-## Patrones
+La intensión de este framework es para restructurar el código y el patrón de diseño existente *(refactoring)* en una aplicación sin patron de diseño normalizado, con el objetivo de que una vez cubierto todas las características de la aplicación, sea factible la migración del sistema a un framework como Laravel ó Symfony.
+
+
+### Recursos utilizados para el desarrollo
+
+#### Patrones
 
 https://www.tutorialspoint.com/design_pattern/index.htm
 
@@ -10,7 +15,7 @@ https://medium.com/php-fad/why-make-framework-agnostic-code-208598eb07cf
 
 https://refactoring.guru/design-patterns
 
-## PSR
+#### PSR
 
 https://packagist.org/packages/psr/http-message
 
@@ -28,7 +33,7 @@ https://route.thephpleague.com/4.x/middleware/
 
 https://github.com/Nyholm/psr7
 
-## PDO
+#### PDO
 
 https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php?rq=1
 
@@ -42,7 +47,7 @@ https://asperbrothers.com/blog/implement-repository-pattern-in-laravel/
 
 https://crnkovic.me/laravel-behind-the-scenes-lifecycle-boot-the-framework/
 
-## Middleware
+#### Middleware
 
 https://azure.microsoft.com/en-in/overview/what-is-middleware/
 
@@ -50,7 +55,7 @@ https://stackoverflow.com/questions/43013296/what-is-middleware-in-laravel
 
 https://phil.tech/2016/why-care-about-php-middleware/
 
-## View
+#### View
 
 https://www.php.net/manual/en/features.commandline.io-streams.php
 
@@ -64,13 +69,13 @@ https://stackoverflow.com/questions/4003989/upload-a-file-using-file-get-content
 
 https://www.php.net/manual/en/function.stream-context-create.php
 
-## Helper Functions
+#### Helper Functions
 
 https://laravel.com/docs/8.x/helpers
 
 https://laravel.com/docs/5.1/helpers#method-auth
 
-## ReactPHP
+#### ReactPHP
 
 https://reactphp.org/
 
