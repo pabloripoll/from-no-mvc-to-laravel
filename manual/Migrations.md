@@ -21,7 +21,7 @@ root
 ### # Crear nueva tabla
 Para crear una tabla nueva en la base de datos
 
-(Manual Schema)[https://laravel.com/docs/5.0/schema]
+[Manual Schema](https://laravel.com/docs/5.0/schema)
 
 Se debe cambiar a directorio `laravel` para ejecutar los comandos a través de `php artisan`. En este ejemplo será la tabla `entrega_material`
 ```bash
