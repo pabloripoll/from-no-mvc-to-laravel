@@ -1,6 +1,5 @@
 # Migraciones
 
-## Razón de uso
 El mantenimiento de la base de datos será administrado por el paquete Doctrine y es ejecutado por framework Laravel ó Symfony.
 Luego de varios exámenes de ambos frameworks, se considera a Symfony con exacelente prestación para la manipulación de las altas y bajas de migraciones y es de menor peso en bytes al recurrir a menores cantidades de dependencias al ser instalado. Sin embargo, al respecto experiencia de usuario, Laravel porta una mejor interfaz ...
 Ésta aplicación estará desacoplada de la aplicación principal y la ejecución de los comandos para la migración de las diferentes versionas de la base de datos, será exclusivamente a través de la entreda por terminal en el servidor.
