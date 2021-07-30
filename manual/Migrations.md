@@ -115,7 +115,71 @@ $ php artisan migrate:rollback
 *Si se ha producido un error al ejecutar la migración, el comando migrate:rollaback no eliminará la tabla si ya fué creada puesto que puede ocurrir que un error se haya producido al crear una columna y como la grabación de la migración sucede al finalizar cada creación de tabla completa, se deberá proceder eliminar (DROP) la tabla manualmente.*
 
 ### # Actualizar tabla existente
-Para actualizar una tabla existente en la base de datos
+A continuación se tomará de ejemplo la rama Entrega de Material que necesitará una nueva tabla en la base de datos: `entrega_material`
+```bash
+$ php artisan make:migration create_entrega_material_table
+```
+Fichero php a modificar ubicado en `/laravel/database/migrations` será en se establece el esquema de la tabla.
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateEntregaMaterialTable extends Migration
+{
+    /**
+     * Table name property.
+     *
+     * @return string
+     */
+    private $table = 'entrega_material';
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create($this->table, function (Blueprint $table) {
+            $table->increments('IdEntregaMaterial');
+            $table->integer('IdSerie');
+            $table->integer('IdAlmacen');
+            $table->integer('IdTrabajador');
+            $table->integer('Numero');
+            $table->date('Fecha');
+            $table->boolean('Estado');
+            $table->decimal('Total', 10, 2);
+            $table->text('Contenido');
+            $table->text('Notas');
+            $table->string('URLFirma', 256);
+            $table->timestamps();
+
+            $table->index('IdSerie');
+            $table->index('IdAlmacen');
+            $table->index('IdTrabajador');
+            $table->index('Numero');
+            $table->index('Fecha');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists($this->table);
+    }
+}
+```
+Una vez establecido las columnas, índices y claves foráneas de la table, se procede a crear la tabla en la base de datos con el siguiente comando
+```bash
+$ php artisan migrate
+```
 
 ### # Modificar nombre de una tabla existente
 Para actualizar una tabla existente en la base de datos
