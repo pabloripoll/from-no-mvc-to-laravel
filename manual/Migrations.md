@@ -26,7 +26,9 @@ root
 
 Antes que nada, los siguientes enlaces serán la documentación a consultar para el mantenimiento.
 
-[Documentación de los esquemas para las migraciones en Laravel](https://laravel.com/docs/5.0/schema)
+[Documentación para la composición de las migraciones](https://laravel.com/docs/8.x/migrations)
+
+[Documentación de los esquemas para las migraciones](https://laravel.com/docs/5.0/schema)
 
 ### # Crear nueva tabla
 
@@ -114,12 +116,12 @@ $ php artisan migrate:rollback
 ```
 *Si se ha producido un error al ejecutar la migración, el comando migrate:rollaback no eliminará la tabla si ya fué creada puesto que puede ocurrir que un error se haya producido al crear una columna y como la grabación de la migración sucede al finalizar cada creación de tabla completa, se deberá proceder eliminar (DROP) la tabla manualmente.*
 
-### # Actualizar tabla existente
+### # Actualizar columnas de tabla existente
 A continuación se tomará de ejemplo la rama Entrega de Material que necesitará una nueva tabla en la base de datos: `entrega_material`
 ```bash
-$ php artisan make:migration create_entrega_material_table
+$ php artisan make:migration add_various_to_entrega_material_table
 ```
-Fichero php a modificar ubicado en `/laravel/database/migrations` será en se establece el esquema de la tabla.
+Fichero php:
 ```php
 <?php
 
@@ -127,7 +129,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntregaMaterialTable extends Migration
+class AddVariousToEntregaMaterialTable extends Migration
 {
     /**
      * Table name property.
@@ -143,25 +145,9 @@ class CreateEntregaMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('IdEntregaMaterial');
-            $table->integer('IdSerie');
-            $table->integer('IdAlmacen');
-            $table->integer('IdTrabajador');
-            $table->integer('Numero');
-            $table->date('Fecha');
-            $table->boolean('Estado');
-            $table->decimal('Total', 10, 2);
-            $table->text('Contenido');
-            $table->text('Notas');
-            $table->string('URLFirma', 256);
-            $table->timestamps();
-
-            $table->index('IdSerie');
-            $table->index('IdAlmacen');
-            $table->index('IdTrabajador');
-            $table->index('Numero');
-            $table->index('Fecha');
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->boolean('URLFirmaEstado')->after('URLFirma');
+            $table->string('Observaciones', 128)->after('URLFirmaEstado');
         });
     }
 
@@ -172,20 +158,118 @@ class CreateEntregaMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->table);
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->dropColumn('Observaciones');
+            $table->dropColumn('URLFirmaEstado');
+        });
     }
 }
 ```
-Una vez establecido las columnas, índices y claves foráneas de la table, se procede a crear la tabla en la base de datos con el siguiente comando
+Una vez completado el esquema de actualización, ejecutar la migración
 ```bash
 $ php artisan migrate
 ```
 
-### # Modificar nombre de una tabla existente
-Para actualizar una tabla existente en la base de datos
+### # Renombrar columnas de una tabla existente
+Para actualizar el nombre de una ó varias columnas de una tabla existente, se puede utilizar el siguiente ejemplo
+```bash
+$ php artisan make:migration rename_column_from_entrega_material_table
+```
+Fichero php:
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class RenameColumnFromEntregaMaterialTable extends Migration
+{
+    /**
+     * Table name property.
+     *
+     * @return string
+     */
+    private $table = 'entrega_material';
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->renameColumn('URLFirmaEstado', 'FirmaEstado');
+        });
+    }
+  
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->renameColumn('FirmaEstado', 'URLFirmaEstado'); // TESTEAR!!!
+        });
+    }
+}
+```
+Una vez completado el esquema de actualización, ejecutar la migración
+```bash
+$ php artisan migrate
+```
+
+### # Modificar nombre de tabla existente
+*(Tener en cuenta si la tabla posee claves foráneas e índices dependientes [StackOverflow](https://stackoverflow.com/a/54453430) )*
+Para actualizar el nombre de una tabla existente en la base de datos, utilizar el siguiente ejemplo
+```bash
+$ php artisan make:migration rename_entrega_material_to_entregas_de_materiales_table
+```
+Fichero php:
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class RenameColumnFromEntregaMaterialTable extends Migration
+{
+    Schema::rename('entrega_material', 'entregas_de_materiales');   
+}
+```
+Una vez completado el esquema de actualización, ejecutar la migración
+```bash
+$ php artisan migrate
+```
 
 ### # Eliminar tabla existente
-Para actualizar una tabla existente en la base de datos
+Para eliminar una tabla existente en la base de datos, utilizar el siguiente ejemplo
+```bash
+$ php artisan make:migration drop_entregas_de_materiales_table
+```
+Fichero php:
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class RenameColumnFromEntregaMaterialTable extends Migration
+{
+    Schema::dropIfExists('entregas_de_materiales');   
+}
+```
+Una vez completado el esquema de actualización, ejecutar la migración
+```bash
+$ php artisan migrate
+```
+
+
 
 ## Instalación de Laravel 8.x
 Laravel se instalará parcialmente en el cliente cuando sea hecho el primer GIT Commit, pero para que esté instalado por completo habrá que cambiar al directio `laravel` y ejecutar los siguientes comandos.
