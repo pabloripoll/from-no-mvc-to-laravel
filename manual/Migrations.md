@@ -40,7 +40,7 @@ $ php artisan make:migration create_entrega_material_table
 ```
 Salida:
 ```bash
-Created Migration: 2021_07_29_135432_create_entrega_material_table
+Created Migration: 2021_07_29_115502_create_entrega_material_table
 ```
 Fichero php a modificar ubicado en `/laravel/database/migrations` será en se establece el esquema de la tabla.
 ```php
@@ -103,11 +103,16 @@ Una vez establecido las columnas, índices y claves foráneas de la table, se pr
 ```bash
 $ php artisan migrate
 ```
+Salida:
+```bash
+Migrating: 2021_07_29_115502_create_entrega_material_table
+Migrated:  2021_07_29_115502_create_entrega_material_table (560.53ms)
+```
 En caso de retroceder en ésta última migración, se deberá realizar a través de un rollback
 ```bash
 $ php artisan migrate:rollback
 ```
-Si se ha producido un error al ejecutar la migración, el comando migrate:rollaback no eliminará la tabla si ya fué creada puesto que puede ocurrir que un error se haya producido al crear una columna y como la grabación de la migración sucede al finalizar cada creación de tabla completa, se deberá proceder eliminar (DROP) la tabla manualmente.
+*Si se ha producido un error al ejecutar la migración, el comando migrate:rollaback no eliminará la tabla si ya fué creada puesto que puede ocurrir que un error se haya producido al crear una columna y como la grabación de la migración sucede al finalizar cada creación de tabla completa, se deberá proceder eliminar (DROP) la tabla manualmente.*
 
 ### # Actualizar tabla existente
 Para actualizar una tabla existente en la base de datos
