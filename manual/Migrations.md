@@ -224,6 +224,7 @@ $ php artisan migrate
 
 ### # Modificar nombre de tabla existente
 *(Tener en cuenta si la tabla posee claves foráneas e índices dependientes [StackOverflow](https://stackoverflow.com/a/54453430) )*
+
 Para actualizar el nombre de una tabla existente en la base de datos, utilizar el siguiente ejemplo
 ```bash
 $ php artisan make:migration rename_entrega_material_to_entregas_de_materiales_table
@@ -247,6 +248,8 @@ $ php artisan migrate
 ```
 
 ### # Eliminar tabla existente
+*(Tener en cuenta si la tabla posee claves foráneas e índices dependientes [StackOverflow](https://stackoverflow.com/a/54453430) )*
+
 Para eliminar una tabla existente en la base de datos, utilizar el siguiente ejemplo
 ```bash
 $ php artisan make:migration drop_entregas_de_materiales_table
