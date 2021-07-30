@@ -179,5 +179,6 @@ QUEUE_DRIVER=sync
 ```
 #### Cabe destacar que toda esta configuración será ejecutada solo la primera vez. Luego, como menciona al principio, en el workflow diario, se ejecutará solamente los comandos correspondientes a la actualización de la base de datos:
 ```bash
-/laravel $ php artisan migrate
+$ cd /var/www/{cloud-gestion-dir-path}/laravel/
+$ php artisan migrate
 ```
