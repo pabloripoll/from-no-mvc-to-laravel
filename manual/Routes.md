@@ -20,7 +20,7 @@ RewriteRule ^mvc/(inicio|agenda|ventas|compras|sat|personal|almacen|informes|adm
 Para actualizar o modificar las rutas se deberá configurar el fichero `app/routes/web.php` que se encuentra en el directorio de refactoring. En el siguiente caso se utilizará la configuración del módulo `Entregas de Material` para los dos ejemplos de uso para establecer la vista.
 Para ambos casos se puede configurar la mismas ruta para diferentes tipos de llamadas.
 
-### # Configuración directa de la vista
+### # Configuración de la vista de forma directa
 ```php
 <?php
 
