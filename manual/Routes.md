@@ -43,7 +43,7 @@ Route::get('/personal/entrega_material/example', function () {
     return self::view('personal.entrega_material.example', $data);
 });
 ```
-### # Configuración de la vista a través del controlador *recomendado*
+### # Configuración de la vista a través del controlador *(recomendado)*
 Este es un ejemplo con todas las variantes con la que se puede configurar una URN según la llamada que haya sido realizada
 ```php
 <?php
