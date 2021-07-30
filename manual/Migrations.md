@@ -25,6 +25,7 @@ root
 ### # Documentación
 
 Antes que nada, los siguientes enlaces serán la documentación a consultar para el mantenimiento.
+
 [Documentación de los esquemas para las migraciones en Laravel](https://laravel.com/docs/5.0/schema)
 
 ### # Crear nueva tabla
