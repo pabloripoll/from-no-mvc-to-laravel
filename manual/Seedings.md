@@ -5,7 +5,11 @@ Los seedings sirven para completar las tablas con datos para el testing o para a
 [Documentación de Laravel para configurar los Seeds](https://laravel.com/docs/8.x/seeding)
 
 ## Ejemplo
-
+Crear el fichero seed
+```
+$ php artisan make:seeder EntregaMaterialSeeder
+```
+Configurar fichero creado
 ```php
 <?php
 
@@ -84,4 +88,8 @@ class EntregaMaterialSeeder extends Seeder
         endfor;
     }
 }
+```
+Ejecutar el seed *(comando recomendado)*
+```bash
+$ php artisan db:seed --class=UserSeeder
 ```
