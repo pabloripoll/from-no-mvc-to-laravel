@@ -1,4 +1,4 @@
-# Session
+# Sesión
 
 Ejemplo de uso de `$_SESSION` en controlador
 ```bash
