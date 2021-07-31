@@ -91,5 +91,5 @@ class EntregaMaterialSeeder extends Seeder
 ```
 Ejecutar el seed *(comando recomendado)*
 ```bash
-$ php artisan db:seed --class=UserSeeder
+$ php artisan db:seed --class=EntregaMaterialSeeder
 ```
