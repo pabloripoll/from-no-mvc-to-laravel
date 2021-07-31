@@ -190,3 +190,6 @@ session()->flush('bands.metal');
 session()->forget('bands');
 
 
+#### Referencia Laravel
+
+https://laravel.com/docs/8.x/session
