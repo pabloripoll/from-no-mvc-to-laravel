@@ -272,7 +272,7 @@ Una vez completado el esquema de actualización, ejecutar la migración
 $ php artisan migrate
 ```
 
-### # Migración en producción
+## En Producción
 Cabe destacar que toda esta configuración será ejecutada solo la primera vez.
 Luego, como menciona al principio, en el workflow de las fuciones de la rama de desarrollo con la rama maestra, se ejecutará solamente los comandos correspondientes a la actualización de la base de datos (y los seeds de las tablas, si los posee) dentro del directorio de Laravel:
 ```bash
