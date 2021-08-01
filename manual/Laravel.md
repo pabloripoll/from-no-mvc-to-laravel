@@ -52,4 +52,4 @@ CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
 ```
-#### Cabe destacar que toda esta configuración será ejecutada solo la primera vez. Luego, como menciona al principio, en el workflow diario, se ejecutará solamente los comandos correspondientes a la actualización de la base de datos:
+#### Cabe destacar que toda esta configuración será ejecutada solo la primera vez. Luego, cuando sea actualizada la aplicación a través de los commits, se ejecutará solamente los comandos correspondientes a la actualización de la base de datos tanto para migraciones o seeders.
