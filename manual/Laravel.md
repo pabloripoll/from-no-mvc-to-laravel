@@ -25,11 +25,11 @@ En cuanto a Composer, se requiere que se actualice el índice de las clases
 ```bash
 $ composer dump-autoload
 ```
-Por último, es fundamental establecer los datos de la conexión a la base de datos del cliente
+En cuanto a la configuración con la base de datos en Laravel, los datos de la conexión del cliente se suele establecer en el fichero `.env` ubicado en la raíz del directorio `laravel`.
 ```bash
 $ sudo nano .env 
 ```
-.env file with minimum params required
+Fichero:
 ```bash
 APP_NAME=Laravel
 APP_ENV=local
@@ -52,4 +52,43 @@ CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
 ```
+Pero en el caso de el corriente proyecto, se ha modificado el fichero `laravel/config/database.php` en las siguientes líneas para que se utilice los parámetros de conexión establecidos en el fichero `/config_BBDD.php`:
+```php
+<?php
+use Illuminate\Support\Str;
+
+require_once __DIR__ . '/../../' . 'config_BBDD.php';
+
+return [
+  
+  #... lines
+  'connections' => [
+
+        #... lines
+
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => BBDD_server, //env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => BBDD_name, //env('DB_DATABASE', 'forge'),
+            'username' => BBDD_user, //env('DB_USERNAME', 'forge'),
+            'password' => BBDD_pass, //env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+  #... lines
+  ],
+
+];
+```
+
 #### Cabe destacar que toda esta configuración será ejecutada solo la primera vez. Luego, cuando sea actualizada la aplicación a través de los commits, se ejecutará solamente los comandos correspondientes a la actualización de la base de datos tanto para migraciones o seeders.
