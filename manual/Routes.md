@@ -30,17 +30,17 @@ use App\Http\Controllers\PersonalController as Personal;
 // Entregas de Material
 Route::get('/personal/entrega_material/example', function () {    
     $data = ['name' => 'John', 'surname' => 'Connor', 'age' => 24];
-    return self::view('personal.entrega_material.example', $data); // self is in reference to Kernel class
+    return view('personal.entrega_material.example', $data); // self is in reference to Kernel class
 });
 
 Route::get('/personal/entrega_material/example', function () {    
     $data = session()->get('usuario');
-    return self::view('personal.entrega_material.example', $data);
+    return view('personal.entrega_material.example', $data);
 });
 
 Route::get('/personal/entrega_material/example', function () {
     $data = Personal::EntregaDeMaterial();
-    return self::view('personal.entrega_material.example', $data);
+    return view('personal.entrega_material.example', $data);
 });
 ```
 ### # Configuración de la vista a través del controlador *(recomendado)*
