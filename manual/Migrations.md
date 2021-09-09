@@ -279,3 +279,6 @@ Luego, como menciona al principio, en el workflow de las fuciones de la rama de 
 $ cd /var/www/{cloud-gestion-dir-path}/laravel/
 $ php artisan migrate
 ```
+
+## Sentencias SQL de migraciones realizadas a través de Laravel
+https://medium.com/@jhonatanvinicius/exporting-sql-statements-from-laravel-migrations-386527375643
