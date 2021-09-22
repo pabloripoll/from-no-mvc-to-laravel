@@ -281,4 +281,15 @@ $ php artisan migrate
 ```
 
 ## Sentencias SQL de migraciones realizadas a través de Laravel
-https://medium.com/@jhonatanvinicius/exporting-sql-statements-from-laravel-migrations-386527375643
+Extracting sql statements using artisan comand. After create your migrations just run the command and  then artisan will show all DDL statements on the console
+```bash
+$ php artisan migrate --pretend
+```
+If it's used the following command it will pull all results inside the migrate.sql
+```bash
+$ php artisan migrate --pretend --no-ansi > migrate.sql 
+```
+It's recommended to use this option only if database user has DDL permitions. In other case, it will received an error because this instruction execute and then show the used SQL statement.
+
+For more of this: https://medium.com/@jhonatanvinicius/exporting-sql-statements-from-laravel-migrations-386527375643
+
